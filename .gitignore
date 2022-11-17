@@ -2,3 +2,4 @@
 /graphlet.egg-info
 /dist
 /build
+/graphlet.*.so

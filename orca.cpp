@@ -126,13 +126,13 @@ struct _GraphletCounter {
 		int frac,frac_prev;
 
 		// precompute triangles that span over edges
-		printf("stage 1 - precomputing common nodes\n");
+		//printf("stage 1 - precomputing common nodes\n");
 		int *tri = (int*)calloc(m,sizeof(int));
 		frac_prev=-1;
 		for (int i=0;i<m;i++) {
 			frac = 100LL*i/m;
 			if (frac!=frac_prev) {
-				printf("%d%%\r",frac);
+				//printf("%d%%\r",frac);
 				frac_prev=frac;
 			}
 			int x=edges[i].a, y=edges[i].b;
@@ -143,18 +143,18 @@ struct _GraphletCounter {
 			}
 		}
 		endTime = clock();
-		printf("%.2f\n", (double)(endTime-startTime)/CLOCKS_PER_SEC);
+		//printf("%.2f\n", (double)(endTime-startTime)/CLOCKS_PER_SEC);
 		startTime = endTime;
 
 		// count full graphlets
-		printf("stage 2 - counting full graphlets\n");
+		//printf("stage 2 - counting full graphlets\n");
 		int64_t *C4 = (int64_t*)calloc(n,sizeof(int64_t));
 		int *neigh = (int*)malloc(n*sizeof(int)), nn;
 		frac_prev=-1;
 		for (int x=0;x<n;x++) {
 			frac = 100LL*x/n;
 			if (frac!=frac_prev) {
-				printf("%d%%\r",frac);
+				//printf("%d%%\r",frac);
 				frac_prev=frac;
 			}
 			for (int nx=0;nx<deg[x];nx++) {
@@ -179,18 +179,18 @@ struct _GraphletCounter {
 			}
 		}
 		endTime = clock();
-		printf("%.2f\n", (double)(endTime-startTime)/CLOCKS_PER_SEC);
+		//printf("%.2f\n", (double)(endTime-startTime)/CLOCKS_PER_SEC);
 		startTime = endTime;
 
 		// set up a system of equations relating orbits for every node
-		printf("stage 3 - building systems of equations\n");
+		//printf("stage 3 - building systems of equations\n");
 		int *common = (int*)calloc(n,sizeof(int));
 		int *common_list = (int*)malloc(n*sizeof(int)), nc=0;
 		frac_prev=-1;
 		for (int x=0;x<n;x++) {
 			frac = 100LL*x/n;
 			if (frac!=frac_prev) {
-				printf("%d%%\r",frac);
+				//printf("%d%%\r",frac);
 				frac_prev=frac;
 			}
 
@@ -263,10 +263,10 @@ struct _GraphletCounter {
 		}
 
 		endTime = clock();
-		printf("%.2f\n", (double)(endTime-startTime)/CLOCKS_PER_SEC);
+		//printf("%.2f\n", (double)(endTime-startTime)/CLOCKS_PER_SEC);
 
 		endTime_all = endTime;
-		printf("total: %.2f\n", (double)(endTime_all-startTime_all)/CLOCKS_PER_SEC);
+		//printf("total: %.2f\n", (double)(endTime_all-startTime_all)/CLOCKS_PER_SEC);
 	}
 	/** count edge orbits of graphlets on max 4 nodes */
 	void ecount4() {
@@ -277,13 +277,13 @@ struct _GraphletCounter {
 		int frac,frac_prev;
 
 		// precompute triangles that span over edges
-		printf("stage 1 - precomputing common nodes\n");
+		//printf("stage 1 - precomputing common nodes\n");
 		int *tri = (int*)calloc(m,sizeof(int));
 		frac_prev=-1;
 		for (int i=0;i<m;i++) {
 			frac = 100LL*i/m;
 			if (frac!=frac_prev) {
-				printf("%d%%\r",frac);
+				//printf("%d%%\r",frac);
 				frac_prev=frac;
 			}
 			int x=edges[i].a, y=edges[i].b;
@@ -294,11 +294,11 @@ struct _GraphletCounter {
 			}
 		}
 		endTime = clock();
-		printf("%.2f\n", (double)(endTime-startTime)/CLOCKS_PER_SEC);
+		//printf("%.2f\n", (double)(endTime-startTime)/CLOCKS_PER_SEC);
 		startTime = endTime;
 
 		// count full graphlets
-		printf("stage 2 - counting full graphlets\n");
+		//printf("stage 2 - counting full graphlets\n");
 		int64_t *C4 = (int64_t*)calloc(m,sizeof(int64_t));
 		int *neighx = (int*)malloc(n*sizeof(int)); // lookup table - edges to neighbors of x
 		memset(neighx,-1,n*sizeof(int));
@@ -308,7 +308,7 @@ struct _GraphletCounter {
 		for (int x=0;x<n;x++) {
 			frac = 100LL*x/n;
 			if (frac!=frac_prev) {
-				printf("%d%%\r",frac);
+				//printf("%d%%\r",frac);
 				frac_prev=frac;
 			}
 
@@ -349,14 +349,14 @@ struct _GraphletCounter {
 			}
 		}
 		endTime = clock();
-		printf("%.2f\n", (double)(endTime-startTime)/CLOCKS_PER_SEC);
+		//printf("%.2f\n", (double)(endTime-startTime)/CLOCKS_PER_SEC);
 		startTime = endTime;
 
 		// count full graphlets for the smallest edge
 		for (int x=0;x<n;x++) {
 			frac = 100LL*x/n;
 			if (frac!=frac_prev) {
-				printf("%d%%\r",frac);
+				//printf("%d%%\r",frac);
 				frac_prev=frac;
 			}
 			for (int nx=deg[x]-1;nx>=0;nx--) {
@@ -381,11 +381,11 @@ struct _GraphletCounter {
 			}
 		}
 		endTime = clock();
-		printf("%.2f\n", (double)(endTime-startTime)/CLOCKS_PER_SEC);
+		//printf("%.2f\n", (double)(endTime-startTime)/CLOCKS_PER_SEC);
 		startTime = endTime;
 
 		// set up a system of equations relating orbits for every node
-		printf("stage 3 - building systems of equations\n");
+		//printf("stage 3 - building systems of equations\n");
 		int *common = (int*)calloc(n,sizeof(int));
 		int *common_list = (int*)malloc(n*sizeof(int)), nc=0;
 		frac_prev=-1;
@@ -393,7 +393,7 @@ struct _GraphletCounter {
 		for (int x=0;x<n;x++) {
 			frac = 100LL*x/n;
 			if (frac!=frac_prev) {
-				printf("%d%%\r",frac);
+				//printf("%d%%\r",frac);
 				frac_prev=frac;
 			}
 
@@ -455,10 +455,10 @@ struct _GraphletCounter {
 		}
 
 		endTime = clock();
-		printf("%.2f\n", (double)(endTime-startTime)/CLOCKS_PER_SEC);
+		//printf("%.2f\n", (double)(endTime-startTime)/CLOCKS_PER_SEC);
 
 		endTime_all = endTime;
-		printf("total: %.2f\n", (double)(endTime_all-startTime_all)/CLOCKS_PER_SEC);
+		//printf("total: %.2f\n", (double)(endTime_all-startTime_all)/CLOCKS_PER_SEC);
 	}
 	/** count graphlets on max 5 nodes */
 	void count5() {
@@ -469,12 +469,12 @@ struct _GraphletCounter {
 		int frac,frac_prev;
 
 		// precompute common nodes
-		printf("stage 1 - precomputing common nodes\n");
+		//printf("stage 1 - precomputing common nodes\n");
 		frac_prev=-1;
 		for (int x=0;x<n;x++) {
 			frac = 100LL*x/n;
 			if (frac!=frac_prev) {
-				printf("%d%%\r",frac);
+				//printf("%d%%\r",frac);
 				frac_prev=frac;
 			}
 			for (int n1=0;n1<deg[x];n1++) {
@@ -504,11 +504,11 @@ struct _GraphletCounter {
 			}
 		}
 		endTime = clock();
-		printf("%.2f sec\n", (double)(endTime-startTime)/CLOCKS_PER_SEC);
+		//printf("%.2f sec\n", (double)(endTime-startTime)/CLOCKS_PER_SEC);
 		startTime = endTime;
 
 		// count full graphlets
-		printf("stage 2 - counting full graphlets\n");
+		//printf("stage 2 - counting full graphlets\n");
 		int64_t *C5 = (int64_t*)calloc(n,sizeof(int64_t));
 		int *neigh = (int*)malloc(n*sizeof(int)), nn;
 		int *neigh2 = (int*)malloc(n*sizeof(int)), nn2;
@@ -516,7 +516,7 @@ struct _GraphletCounter {
 		for (int x=0;x<n;x++) {
 			frac = 100LL*x/n;
 			if (frac!=frac_prev) {
-				printf("%d%%\r",frac);
+				//printf("%d%%\r",frac);
 				frac_prev=frac;
 			}
 			for (int nx=0;nx<deg[x];nx++) {
@@ -552,7 +552,7 @@ struct _GraphletCounter {
 			}
 		}
 		endTime = clock();
-		printf("%.2f sec\n", (double)(endTime-startTime)/CLOCKS_PER_SEC);
+		//printf("%.2f sec\n", (double)(endTime-startTime)/CLOCKS_PER_SEC);
 		startTime = endTime;
 
 		int *common_x = (int*)calloc(n,sizeof(int));
@@ -561,12 +561,12 @@ struct _GraphletCounter {
 		int *common_a_list = (int*)malloc(n*sizeof(int)), nca=0;
 
 		// set up a system of equations relating orbit counts
-		printf("stage 3 - building systems of equations\n");
+		//printf("stage 3 - building systems of equations\n");
 		frac_prev=-1;
 		for (int x=0;x<n;x++) {
 			frac = 100LL*x/n;
 			if (frac!=frac_prev) {
-				printf("%d%%\r",frac);
+				//printf("%d%%\r",frac);
 				frac_prev=frac;
 			}
 
@@ -864,10 +864,10 @@ struct _GraphletCounter {
 			orbit[x][15] = (f_15-1*orbit[x][59]-2*orbit[x][52]-1*orbit[x][51]-2*orbit[x][45]-2*orbit[x][35]-2*orbit[x][34]-2*orbit[x][27]);
 		}
 		endTime = clock();
-		printf("%.2f sec\n", (double)(endTime-startTime)/CLOCKS_PER_SEC);
+		//printf("%.2f sec\n", (double)(endTime-startTime)/CLOCKS_PER_SEC);
 
 		endTime_all = endTime;
-		printf("total: %.2f sec\n", (double)(endTime_all-startTime_all)/CLOCKS_PER_SEC);
+		//printf("total: %.2f sec\n", (double)(endTime_all-startTime_all)/CLOCKS_PER_SEC);
 	}
 	/** count edge orbits of graphlets on max 5 nodes */
 	void ecount5() {
@@ -878,12 +878,12 @@ struct _GraphletCounter {
 		int frac,frac_prev;
 
 		// precompute common nodes
-		printf("stage 1 - precomputing common nodes\n");
+		//printf("stage 1 - precomputing common nodes\n");
 		frac_prev=-1;
 		for (int x=0;x<n;x++) {
 			frac = 100LL*x/n;
 			if (frac!=frac_prev) {
-				printf("%d%%\r",frac);
+				//printf("%d%%\r",frac);
 				frac_prev=frac;
 			}
 			for (int n1=0;n1<deg[x];n1++) {
@@ -913,11 +913,11 @@ struct _GraphletCounter {
 			}
 		}
 		endTime = clock();
-		printf("%.2f sec\n", (double)(endTime-startTime)/CLOCKS_PER_SEC);
+		//printf("%.2f sec\n", (double)(endTime-startTime)/CLOCKS_PER_SEC);
 		startTime = endTime;
 
 		// count full graphlets
-		printf("stage 2 - counting full graphlets\n");
+		//printf("stage 2 - counting full graphlets\n");
 		int64_t *C5 = (int64_t*)calloc(m,sizeof(int64_t));
 		int *neighx = (int*)malloc(n*sizeof(int)); // lookup table - edges to neighbors of x
 		memset(neighx,-1,n*sizeof(int));
@@ -929,7 +929,7 @@ struct _GraphletCounter {
 		for (int x=0;x<n;x++) {
 			frac = 100LL*x/n;
 			if (frac!=frac_prev) {
-				printf("%d%%\r",frac);
+				//printf("%d%%\r",frac);
 				frac_prev=frac;
 			}
 
@@ -985,11 +985,11 @@ struct _GraphletCounter {
 			}
 		}
 		endTime = clock();
-		printf("%.2f\n", (double)(endTime-startTime)/CLOCKS_PER_SEC);
+		//printf("%.2f\n", (double)(endTime-startTime)/CLOCKS_PER_SEC);
 		startTime = endTime;
 
 		// set up a system of equations relating orbits for every node
-		printf("stage 3 - building systems of equations\n");
+		//printf("stage 3 - building systems of equations\n");
 		int *common_x = (int*)calloc(n,sizeof(int));
 		int *common_x_list = (int*)malloc(n*sizeof(int)), nc_x=0;
 		int *common_y = (int*)calloc(n,sizeof(int));
@@ -999,7 +999,7 @@ struct _GraphletCounter {
 		for (int x=0;x<n;x++) {
 			frac = 100LL*x/n;
 			if (frac!=frac_prev) {
-				printf("%d%%\r",frac);
+				//printf("%d%%\r",frac);
 				frac_prev=frac;
 			}
 
@@ -1361,10 +1361,10 @@ struct _GraphletCounter {
 		}
 
 		endTime = clock();
-		printf("%.2f\n", (double)(endTime-startTime)/CLOCKS_PER_SEC);
+		//printf("%.2f\n", (double)(endTime-startTime)/CLOCKS_PER_SEC);
 
 		endTime_all = endTime;
-		printf("total: %.2f\n", (double)(endTime_all-startTime_all)/CLOCKS_PER_SEC);
+		//printf("total: %.2f\n", (double)(endTime_all-startTime_all)/CLOCKS_PER_SEC);
 	}
 
 #undef common3_get
